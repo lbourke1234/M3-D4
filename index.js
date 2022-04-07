@@ -108,7 +108,7 @@ const displayCart = (event) => {
         // cartRowNode.appendChild(colNode)
     }
     const removeThisBook = (event) => {
-        console.log(event.target.closest('.col-3'))
+        // console.log(event.target.closest('.col-3'))
         event.target.closest('.col-3').remove()
     }
 
@@ -118,10 +118,11 @@ const displayCart = (event) => {
         // console.log(inputNode)
         let containerNode = document.querySelector('.container')
         containerNode.prepend(inputNode)
-        inputNode.addEventListener('keydown', searchFunction)
+        inputNode.addEventListener('input', searchFunction)
     }
 
     const searchFunction = (event) => {
+        console.log(event.target.value)
         if (event.target.value.length >= 3) {
             // console.log(items.title)
             const filteredItems = items.filter(item => item.title.includes(event.target.value))
