@@ -122,11 +122,31 @@ const displayCart = (event) => {
     }
 
     const searchFunction = (event) => {
-        if (event.target.value.length > 3) {
+        if (event.target.value.length >= 3) {
             // console.log(items.title)
-            const filteredItems = items.filter(item => {
-                item.title.includes(event.target.value) 
-                console.log(filteredItems)
+            const filteredItems = items.filter(item => item.title.includes(event.target.value))
+                
+            console.log(filteredItems)
+            let rowNode = document.querySelector('.row')
+            rowNode.innerHTML = ''
+            filteredItems.forEach(book => {
+
+            
+
+                let colNode = document.createElement('div')
+                colNode.classList.add('col-3')
+                colNode.innerHTML = `
+                    <div class="card" id=${book.asin} >
+                        <img src="${book.img}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary"  onclick="addToCart(event)">Add to Cart</a>
+                            <button type="button" class="btn btn-outline-success" onclick="removeThisBook(event)">Skip</button>
+                        </div>
+                    </div>
+                    `
+                rowNode.appendChild(colNode) 
             })
         }
     }
